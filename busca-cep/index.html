@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Busca CEP</title>
+</head>
+<body>
+
+    <form id="formBuscaCep">
+        <label for="txtCep">Digite seu CEP:</label>
+        <input type="text" id="txtCep" maxlength="8">
+        <button>Buscar CEP</button>
+    </form>
+
+    <div id="retornoApi"></div>
+
+    <script>
+        // cria uma referência para o formulário
+        const formBuscaCep = document.getElementById("formBuscaCep");
+
+        // escuta o evento de submit ao formulário
+        formBuscaCep.addEventListener('submit', function(event){
+            // previne o comportamento padrão do formulário
+            event.preventDefault();
+            
+            // pegar o valor digitado no campo de CEP
+            const cep = event.target.txtCep.value;
+
+            const request = fetch(`https://viacep.com.br/ws/${cep}/json/`);
+
+            request.then(function(response){
+                response.json().then(function(data){
+                    console.log(data);
+                });
+            });
+        });
+    </script>
+    
+</body>
+</html>
