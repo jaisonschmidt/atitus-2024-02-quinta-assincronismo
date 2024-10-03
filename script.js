@@ -23,3 +23,6 @@ stopButton.addEventListener('click', stopClock);
 // no onload da página ja atualiza o relogio
 updateClock();
 intervalId = setInterval(updateClock, 1000);
+
+// setInterval gera um código repetido "eternamente" até que seja parado
+// setTimeout executa um código somente uma vez após um determinado tempo
