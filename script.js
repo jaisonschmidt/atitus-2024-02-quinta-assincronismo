@@ -1,4 +1,6 @@
 const clock = document.getElementById('clock');
+const stopButton = document.getElementById('stopButton');
+let intervalId;
 
 function updateClock() {
     // cria uma nova instância de Date
@@ -11,4 +13,13 @@ function updateClock() {
     clock.innerText = `${hours}:${minutes}:${seconds}`;
 }
 
-setInterval(updateClock, 1000);
+function stopClock() {
+    clearInterval(intervalId);
+}
+
+// detecta que a pessoa clicou no button de stop clock
+stopButton.addEventListener('click', stopClock);
+
+// no onload da página ja atualiza o relogio
+updateClock();
+intervalId = setInterval(updateClock, 1000);
