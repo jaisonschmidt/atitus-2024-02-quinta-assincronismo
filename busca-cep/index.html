@@ -25,20 +25,27 @@
         const retornoApi = document.getElementById("retornoApi");
 
         // escuta o evento de submit ao formulário
-        formBuscaCep.addEventListener('submit', function(event){
+        formBuscaCep.addEventListener('submit', async function(event){
             // previne o comportamento padrão do formulário
             event.preventDefault();
             
             // pegar o valor digitado no campo de CEP
             const cep = event.target.txtCep.value;
 
-            const request = fetch(`https://viacep.com.br/ws/${cep}/json/`);
-
+            // utilizar async await para simplificar o código
+            const request = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
+            const data = await request.json();
+            
+            retornoApi.innerText = `${data.logradouro}, ${data.bairro}, ${data.localidade} - ${data.uf}`;
+            
+            /*
             request.then(function(response){
                 response.json().then(function(data){
                     retornoApi.innerText = `${data.logradouro}, ${data.bairro}, ${data.localidade} - ${data.uf}`;
                 });
             });
+            */
+
         });
     </script>
     
