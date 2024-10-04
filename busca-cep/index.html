@@ -13,11 +13,16 @@
         <button>Buscar CEP</button>
     </form>
 
+    <hr>
+
     <div id="retornoApi"></div>
 
     <script>
         // cria uma referência para o formulário
         const formBuscaCep = document.getElementById("formBuscaCep");
+        
+        // cria uma referência para o retornoApi
+        const retornoApi = document.getElementById("retornoApi");
 
         // escuta o evento de submit ao formulário
         formBuscaCep.addEventListener('submit', function(event){
@@ -31,7 +36,7 @@
 
             request.then(function(response){
                 response.json().then(function(data){
-                    console.log(data);
+                    retornoApi.innerText = `${data.logradouro}, ${data.bairro}, ${data.localidade} - ${data.uf}`;
                 });
             });
         });
